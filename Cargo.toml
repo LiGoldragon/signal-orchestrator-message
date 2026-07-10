@@ -1,0 +1,28 @@
+[package]
+name         = "signal-orchestrator-message"
+version      = "0.1.0"
+edition      = "2024"
+rust-version = "1.89"
+license      = "MIT OR Apache-2.0"
+repository   = "https://github.com/LiGoldragon/signal-orchestrator-message"
+description  = "Semantic payload contract carried inside the opaque orchestrator message body."
+publish      = false
+include      = ["Cargo.toml", "Cargo.lock", "README.md", "schema/**", "src/**", "tests/**"]
+
+[lib]
+name = "signal_orchestrator_message"
+path = "src/lib.rs"
+
+[features]
+default   = ["nota-text"]
+nota-text = ["dep:nota"]
+
+[dependencies]
+nota      = { package = "nota", git = "https://github.com/LiGoldragon/nota.git", branch = "main", optional = true }
+rkyv      = { version = "0.8", default-features = false, features = ["std", "bytecheck", "little_endian", "pointer_width_32", "unaligned"] }
+thiserror = "2"
+
+[lints.rust]
+unsafe_code = "forbid"
+unused      = { level = "warn", priority = -1 }
+dead_code   = "warn"
