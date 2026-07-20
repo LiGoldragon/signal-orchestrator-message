@@ -123,7 +123,7 @@ dependencies = [
 [[package]]
 name = "nota"
 version = "0.5.1"
-source = "git+https://github.com/LiGoldragon/nota.git?branch=main#5b9f17c805458b086a99e63ac1a4ddf884a820dd"
+source = "git+https://github.com/LiGoldragon/nota.git?rev=ce7c564de0a0518eaa1938d55dccc460a67cadb4#ce7c564de0a0518eaa1938d55dccc460a67cadb4"
 dependencies = [
  "nota-derive",
  "rkyv",
@@ -132,7 +132,7 @@ dependencies = [
 [[package]]
 name = "nota-derive"
 version = "0.3.0"
-source = "git+https://github.com/LiGoldragon/nota.git?branch=main#5b9f17c805458b086a99e63ac1a4ddf884a820dd"
+source = "git+https://github.com/LiGoldragon/nota.git?rev=ce7c564de0a0518eaa1938d55dccc460a67cadb4#ce7c564de0a0518eaa1938d55dccc460a67cadb4"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -245,7 +245,7 @@ checksum = "cf54715a573b99ac80df0bc206da022bcd442c974952c7b9720069370852e21f"
 
 [[package]]
 name = "signal-orchestrator-message"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "nota",
  "rkyv",
