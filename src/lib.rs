@@ -6,14 +6,12 @@
 //! transported. Threading is transport-level and is deliberately not modelled
 //! here (no thread field).
 //!
-//! The binary wire is rkyv-backed; NOTA projection is an edge feature for
+//! The binary wire is rkyv-backed; DOTOS projection is an edge feature for
 //! clients, tests, and tools.
 
 #![forbid(unsafe_code)]
 
 use thiserror::Error;
-
-pub const SIGNAL_SCHEMA_SOURCE: &str = include_str!("../schema/signal.schema");
 
 #[derive(Debug, Error, PartialEq, Eq)]
 pub enum Error {
@@ -29,8 +27,8 @@ pub enum Error {
 /// ordinary case, `Hard` a firm directive. All magnitudes fold in at the next
 /// natural turn; magnitude is emphasis, not a transport interrupt.
 #[cfg_attr(
-    feature = "nota-text",
-    derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
+    feature = "dotos-text",
+    derive(dotos::DotosDecode, dotos::DotosDecodeTraced, dotos::DotosEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Copy, Debug, PartialEq, Eq)]
 pub enum GuidanceMagnitude {
@@ -55,8 +53,8 @@ pub enum GuidanceMagnitude {
 /// urgency is expressed as `Guidance(Hard)` or `Interruption`, never as a
 /// transport signal.
 #[cfg_attr(
-    feature = "nota-text",
-    derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
+    feature = "dotos-text",
+    derive(dotos::DotosDecode, dotos::DotosDecodeTraced, dotos::DotosEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub enum OrchestratorMessageKind {
@@ -69,8 +67,8 @@ macro_rules! non_empty_text_type {
     ($name:ident, $doc:literal) => {
         #[doc = $doc]
         #[cfg_attr(
-            feature = "nota-text",
-            derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
+            feature = "dotos-text",
+            derive(dotos::DotosDecode, dotos::DotosDecodeTraced, dotos::DotosEncode)
         )]
         #[derive(
             rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq,
@@ -96,14 +94,14 @@ macro_rules! non_empty_text_type {
 non_empty_text_type!(MessageSubject, "A short subject line for the message.");
 non_empty_text_type!(
     MessageContent,
-    "The message body: prose or nested NOTA text."
+    "The message body: prose or nested DOTOS text."
 );
 
 /// A semantic orchestrator message: what kind it is, its subject line, and its
 /// content. No thread field — threading is transport-level.
 #[cfg_attr(
-    feature = "nota-text",
-    derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
+    feature = "dotos-text",
+    derive(dotos::DotosDecode, dotos::DotosDecodeTraced, dotos::DotosEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct OrchestratorMessage {

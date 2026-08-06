@@ -12,7 +12,7 @@ Owned here:
   `Report`;
 - `GuidanceMagnitude` — `Soft`, `Standard`, `Hard`;
 - non-empty subject and content text records;
-- rkyv-compatible wire records and NOTA projection for edges.
+- rkyv-compatible wire records and DOTOS projection for edges.
 
 Not owned here:
 

@@ -2,7 +2,7 @@
 
 - Payload-only contract: no request/reply channel roots.
 - Message kinds are semantic, never transport signals.
-- Binary component traffic uses typed rkyv records. NOTA is only projection for
+- Binary component traffic uses typed rkyv records. DOTOS is only projection for
   clients, tests, and tools.
 - `Question` and `HardInterruption` are deliberately absent; do not add them.
 - No thread field: threading is transport-level.

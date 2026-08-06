@@ -1,24 +1,24 @@
 [package]
 name         = "signal-orchestrator-message"
-version      = "0.1.1"
+version      = "0.2.0"
 edition      = "2024"
 rust-version = "1.89"
 license      = "MIT OR Apache-2.0"
 repository   = "https://github.com/LiGoldragon/signal-orchestrator-message"
 description  = "Semantic payload contract carried inside the opaque orchestrator message body."
 publish      = false
-include      = ["Cargo.toml", "Cargo.lock", "README.md", "schema/**", "src/**", "tests/**"]
+include      = ["Cargo.toml", "Cargo.lock", "README.md", "src/**", "tests/**"]
 
 [lib]
 name = "signal_orchestrator_message"
 path = "src/lib.rs"
 
 [features]
-default   = ["nota-text"]
-nota-text = ["dep:nota"]
+default    = ["dotos-text"]
+dotos-text = ["dep:dotos"]
 
 [dependencies]
-nota      = { package = "nota", git = "https://github.com/LiGoldragon/nota.git", rev = "ce7c564de0a0518eaa1938d55dccc460a67cadb4", optional = true }
+dotos     = { package = "dotos", git = "https://github.com/LiGoldragon/dotos.git", rev = "80c7b17f7ad3cf547d2624c6a243e5de5f85c9f3", optional = true }
 rkyv      = { version = "0.8", default-features = false, features = ["std", "bytecheck", "little_endian", "pointer_width_32", "unaligned"] }
 thiserror = "2"
 

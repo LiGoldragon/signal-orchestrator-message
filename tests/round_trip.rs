@@ -1,8 +1,8 @@
 //! Round-trip tests for the orchestrator message payload.
 //!
 //! Each test names the shape it pins down. Every message kind and guidance
-//! magnitude round-trips through the rkyv binary carriage; the NOTA projection
-//! is exercised under the `nota-text` feature.
+//! magnitude round-trips through the rkyv binary carriage; the DOTOS projection
+//! is exercised under the `dotos-text` feature.
 
 use signal_orchestrator_message::{
     GuidanceMagnitude, MessageContent, MessageSubject, OrchestratorMessage, OrchestratorMessageKind,
@@ -43,30 +43,30 @@ fn non_empty_text_types_reject_blank_values() {
     assert!(MessageSubject::new("subject").is_ok());
 }
 
-#[cfg(feature = "nota-text")]
+#[cfg(feature = "dotos-text")]
 #[test]
-fn every_kind_and_magnitude_round_trips_through_nota() {
-    use nota::{NotaEncode, NotaSource};
+fn every_kind_and_magnitude_round_trips_through_dotos() {
+    use dotos::{DotosEncode, DotosSource};
 
     for kind in all_kinds() {
         let payload = message(kind);
-        let text = payload.to_nota();
-        let recovered = NotaSource::new(&text)
+        let text = payload.to_dotos();
+        let recovered = DotosSource::new(&text)
             .parse::<OrchestratorMessage>()
-            .expect("decode nota");
+            .expect("decode DOTOS");
         assert_eq!(recovered, payload);
     }
 }
 
-#[cfg(feature = "nota-text")]
+#[cfg(feature = "dotos-text")]
 #[test]
-fn guidance_magnitude_names_appear_in_nota_projection() {
-    use nota::NotaEncode;
+fn guidance_magnitude_names_appear_in_dotos_projection() {
+    use dotos::DotosEncode;
 
-    let soft = message(OrchestratorMessageKind::Guidance(GuidanceMagnitude::Soft)).to_nota();
+    let soft = message(OrchestratorMessageKind::Guidance(GuidanceMagnitude::Soft)).to_dotos();
     assert!(soft.contains("Guidance"));
     assert!(soft.contains("Soft"));
 
-    let report = message(OrchestratorMessageKind::Report).to_nota();
+    let report = message(OrchestratorMessageKind::Report).to_dotos();
     assert!(report.contains("Report"));
 }
