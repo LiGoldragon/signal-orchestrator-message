@@ -8,3 +8,9 @@ threading, addressing, or daemon logic. Do not add a `Question` kind or a
 `HardInterruption` kind; both are deliberately absent.
 
 Run `cargo fmt`, `cargo test`, and `nix flake check` after Rust changes.
+
+## Protos estate status
+
+Stack: correct-new destination
+Status: active component contract, current checkout legacy-wired
+This checkout is not proof of correct-new adoption.
